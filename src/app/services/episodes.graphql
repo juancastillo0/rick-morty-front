@@ -1,0 +1,57 @@
+query episodes {
+  episodes(page: -1) {
+    results {
+      id
+      name
+      airDate
+      code
+    }
+  }
+}
+
+mutation createEpisode($creator: EpisodeCreator!) {
+  episodeMutation {
+    createEpisode(creator: $creator) {
+      id
+      name
+      airDate
+      code
+    }
+  }
+}
+
+mutation deleteEpisode($id: Int!) {
+  episodeMutation {
+    deleteEpisode(id: $id)
+  }
+}
+
+mutation updateEpisode($updater: EpisodeUpdater!) {
+  episodeMutation {
+    updateEpisode(updater: $updater) {
+      id
+      name
+      airDate
+      code
+    }
+  }
+}
+
+query getEpisode($id: Int!) {
+  episode(id: $id) {
+    id
+    name
+    airDate
+    code
+    characters {
+      id
+      name
+      status
+      species
+      gender
+      originId
+      locationId
+      type
+    }
+  }
+}

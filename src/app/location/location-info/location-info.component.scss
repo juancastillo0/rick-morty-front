@@ -1,0 +1,21 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  section {
+    flex: 2;
+    min-width: 150px;
+    max-width: 300px;
+    &:first-of-type {
+      flex: 3;
+    }
+    span {
+      font-weight: lighter;
+      font-size: smaller;
+      margin-bottom: 2px;
+    }
+    div {
+      margin-bottom: 10px;
+    }
+  }
+}

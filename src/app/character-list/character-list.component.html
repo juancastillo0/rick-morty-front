@@ -1,0 +1,26 @@
+<main>
+  <div class="filter" [class.closed]="!filtering">
+    <app-character-filter [submitFn]=""></app-character-filter>
+  </div>
+  <cdk-virtual-scroll-viewport autosize *ngIf="characters$ | async as characters" (scroll)="nextBatch()">
+    <div class="card" *cdkVirtualFor="let character of characters; let i = index; trackBy: trackByIdx"
+      [routerLink]="['/characters/', character.id]">
+      <header>
+        {{character.name}}
+      </header>
+      <!-- <div class="card-row">
+        <div>{{character.gender}}</div>
+        <div>{{character.status}}</div>
+      </div>
+      <div class="card-row">
+        <div>{{character.species}}</div>
+        <div>{{character.type}}</div>
+      </div> -->
+      <app-character-info [character]="character"></app-character-info>
+    </div>
+    <mat-spinner style="margin:20px auto 0;" diameter=30 *ngIf="loading"></mat-spinner>
+  </cdk-virtual-scroll-viewport>
+
+  <button mat-fab color="primary" id="create-button" [routerLink]="['/characters/create']">Crear</button>
+  <button mat-fab color="secundary" id="filter-button" (click)="toggleFilter()">Filtro</button>
+</main>

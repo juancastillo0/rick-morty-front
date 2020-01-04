@@ -1,0 +1,22 @@
+.checkbox-select {
+  display: flex;
+  flex-direction: column;
+  mat-label {
+    font-weight: lighter;
+    padding-bottom: 5px;
+  }
+  mat-checkbox {
+    padding-left: 10px;
+  }
+  padding-bottom: 20px;
+}
+form {
+  padding: 20px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.3);
+}
+mat-form-field {
+  width: 100%;
+}

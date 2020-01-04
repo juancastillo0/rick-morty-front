@@ -1,0 +1,14 @@
+<form [formGroup]="locationForm">
+  <div class="row">
+    <mat-form-field><input matInput placeholder="Nombre" formControlName="name"></mat-form-field>
+    <mat-form-field><input matInput placeholder="Dimensión" formControlName="dimension"></mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field><textarea matInput placeholder="Tipo" formControlName="type"></textarea></mat-form-field>
+  </div>
+  <div class="button-row">
+    <button *ngIf="cancelFn !== undefined" mat-raised-button (click)="cancelFn()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="!locationForm.valid || loading " (click)="submit()"
+      style="margin-left: auto;">Confirmar</button>
+  </div>
+</form>

@@ -1,0 +1,41 @@
+<form [formGroup]="characterForm">
+  <div class="row">
+    <mat-form-field><input matInput placeholder="Nombre" formControlName="name"></mat-form-field>
+    <mat-form-field><input matInput placeholder="Estado" formControlName="status"></mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field><input matInput placeholder="Especie" formControlName="species"></mat-form-field>
+    <mat-form-field><input matInput placeholder="Género" formControlName="gender"></mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field><textarea matInput placeholder="Tipo" formControlName="type"></textarea></mat-form-field>
+  </div>
+  <div class="row" *ngIf="locationService.locations$ | async as locations">
+    <mat-form-field>
+      <mat-select placeholder="Origen" formControlName="originId">
+        <mat-option>Ninguno</mat-option>
+        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} ({{loc.dimension}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Lugar" formControlName="locationId">
+        <mat-option>Ninguno</mat-option>
+        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} ({{loc.dimension}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row" *ngIf="episodeService.episodes$ | async as episodes">
+    <mat-form-field>
+      <mat-label>Episodios</mat-label>
+      <mat-select formControlName="episodeIds" multiple>
+        <mat-option *ngFor="let epi of episodes" [value]="epi.id">{{epi.code}} - {{epi.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="button-row">
+    <button *ngIf="cancelFn !== undefined" mat-raised-button (click)="cancelFn()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="!characterForm.valid || loading " (click)="submit()"
+      style="margin-left: auto;">Confirmar</button>
+  </div>
+</form>

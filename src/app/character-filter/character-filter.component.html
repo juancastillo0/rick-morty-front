@@ -1,0 +1,34 @@
+<form [formGroup]="filterForm">
+  <mat-form-field><input matInput placeholder="Nombre" formControlName="searchText"></mat-form-field>
+  <div formGroupName="status" class="checkbox-select">
+    <mat-label>Estado</mat-label>
+    <mat-checkbox *ngFor="let item of filterForm.get('status').value | keyvalue" [formControlName]="item.key">
+      {{item.key}}
+    </mat-checkbox>
+  </div>
+  <div formGroupName="gender" class="checkbox-select">
+    <mat-label>Género</mat-label>
+    <mat-checkbox *ngFor="let item of filterForm.get('gender').value | keyvalue" [formControlName]="item.key">
+      {{item.key}}
+    </mat-checkbox>
+  </div>
+  <mat-form-field><input matInput placeholder="Especie" formControlName="species"></mat-form-field>
+  <div *ngIf="locationService.locations$ | async as locations">
+    <mat-form-field>
+      <mat-select placeholder="Origen" formControlName="originId" multiple>
+        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} ({{loc.dimension}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Lugar" formControlName="locationId" multiple>
+        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} ({{loc.dimension}})</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="button-row">
+    <button mat-raised-button (click)="reset()">Reiniciar</button>
+    <button mat-raised-button color="primary" [disabled]="!filterForm.valid || loading " (click)="submit()"
+      style="margin-left: auto;">Filtrar</button>
+  </div>
+</form>

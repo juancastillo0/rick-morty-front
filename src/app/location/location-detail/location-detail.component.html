@@ -1,0 +1,63 @@
+<ng-container *ngIf="location$ | async as location">
+  <div class="container">
+    <header>
+      <h2>
+        {{location.name}}
+      </h2>
+      <div id="edit-delete-buttons">
+        <button mat-raised-button (click)="onEdit()">Editar</button>
+        <button mat-raised-button color="warn" (click)="onDelete()">Eliminar</button>
+      </div>
+    </header>
+
+    <app-location-form [location]="location" [submitFn]="edit" [cancelFn]="onEdit" *ngIf="editing">
+    </app-location-form>
+
+    <div *ngIf="!editing">
+      <div class="col">
+        <app-location-info [location]="location"></app-location-info>
+        <div class="characters-row">
+          <h3>Personajes Con Lugar</h3>
+          <div *ngIf="location.charactersWithLocation !== undefined" class="characters-list">
+            <div *ngFor="let character of location.charactersWithLocation">
+              <h4 [routerLink]="['/characters/', character.id]">{{character.name}}</h4>
+              <app-character-info [character]="character" [showLocation]="false" [showOrigin]="false">
+              </app-character-info>
+            </div>
+            <div *ngIf="location.charactersWithLocation.length === 0">
+              No hay personajes con lugar '{{location.name}}'
+            </div>
+          </div>
+          <mat-spinner style="margin:20px auto 0;" diameter=30 *ngIf="location.charactersWithLocation === undefined">
+          </mat-spinner>
+        </div>
+        <div class="characters-row">
+          <h3>Personajes Con Origen</h3>
+          <div *ngIf="location.charactersWithOrigin !== undefined" class="characters-list">
+            <div *ngFor="let character of location.charactersWithOrigin">
+              <h4 [routerLink]="['/characters/', character.id]">{{character.name}}</h4>
+              <app-character-info [character]="character" [showLocation]="false" [showOrigin]="false">
+              </app-character-info>
+            </div>
+            <div *ngIf="location.charactersWithOrigin.length === 0">
+              No hay personajes con origen '{{location.name}}'
+            </div>
+          </div>
+          <mat-spinner style="margin:20px auto 0;" diameter=30 *ngIf="location.charactersWithOrigin === undefined">
+          </mat-spinner>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="deleting" class="modal">
+      <div class="modal-content">
+        <h3>Eliminar {{location.name}}</h3>
+        <p>¿Está seguro que desea eliminar a {{location.name}}?</p>
+        <footer>
+          <button mat-raised-button (click)="onDelete()">Cancelar</button>
+          <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</ng-container>

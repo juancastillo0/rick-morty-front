@@ -1,0 +1,19 @@
+query characters($page: Int!) {
+  characters(page: $page) {
+    info {
+      nextPage
+      numPages
+      itemCount
+    }
+    results {
+      id
+      name
+      status
+      species
+      gender
+      type
+      originId
+      locationId
+    }
+  }
+}

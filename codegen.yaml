@@ -1,0 +1,12 @@
+schema:
+  - http://localhost:8000/graphql
+
+documents:
+  - src/**/*.graphql
+
+generates:
+  ./src/app/services/rickAndMortyGraphql.service.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular

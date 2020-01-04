@@ -1,0 +1,13 @@
+<main>
+  <cdk-virtual-scroll-viewport autosize *ngIf="locationService.locations$ | async as locations">
+    <div class="card" 
+      *cdkVirtualFor="let location of locations; let i = index; trackBy: trackByIdx"
+      [routerLink]="['/locations/', location.id]">
+      <header>
+        {{location.name}}
+      </header>
+      <app-location-info [location]="location"></app-location-info>
+    </div>
+  </cdk-virtual-scroll-viewport>
+  <button mat-fab color="primary" id="create-button" [routerLink]="['/locations/create']">Crear</button>
+</main>

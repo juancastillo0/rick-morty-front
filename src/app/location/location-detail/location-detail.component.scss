@@ -1,0 +1,32 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  margin-bottom: 10px;
+  #edit-delete-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    button:first-of-type {
+      margin-right: 15px;
+    }
+  }
+}
+
+.characters-list {
+  margin-left: 20px;
+  max-height: 60vh;
+  overflow: auto;
+  border-left: 2px solid;
+  padding-left: 20px;
+  padding-right: 20px;
+  h4 {
+    cursor: pointer;
+  }
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+

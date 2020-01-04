@@ -1,0 +1,31 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  section {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    span {
+      font-weight: lighter;
+      font-size: smaller;
+      margin-bottom: 2px;
+    }
+    div {
+      margin-bottom: 10px;
+    }
+    .location-content {
+      padding-left: 14px;
+      border-left: solid;
+      margin-bottom: 30px;
+    }
+    .location-name {
+      cursor: pointer;
+    }
+  }
+}
+
+mat-divider {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}

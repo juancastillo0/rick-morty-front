@@ -1,0 +1,67 @@
+query locations {
+  locations(page: -1) {
+    results {
+      id
+      name
+      type
+      dimension
+    }
+  }
+}
+
+mutation createLocation($creator: LocationCreator!) {
+  locationMutation {
+    createLocation(creator: $creator) {
+      id
+      name
+      type
+      dimension
+    }
+  }
+}
+
+mutation updateLocation($updater: LocationUpdater!) {
+  locationMutation {
+    updateLocation(updater: $updater) {
+      id
+      name
+      type
+      dimension
+    }
+  }
+}
+
+mutation deleteLocation($id: Int!) {
+  locationMutation {
+    deleteLocation(id: $id)
+  }
+}
+
+query getLocation($id: Int!) {
+  location(id: $id) {
+    id
+    name
+    type
+    dimension
+    charactersWithOrigin {
+      id
+      name
+      status
+      species
+      gender
+      originId
+      locationId
+      type
+    }
+    charactersWithLocation {
+      id
+      name
+      status
+      species
+      gender
+      originId
+      locationId
+      type
+    }
+  }
+}

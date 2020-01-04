@@ -1,0 +1,67 @@
+query character($id: Int!) {
+  character(id: $id) {
+    id
+    name
+    status
+    species
+    gender
+    type
+    origin {
+      id
+      name
+      type
+      dimension
+    }
+    location {
+      id
+      name
+      type
+      dimension
+    }
+    episodes {
+      id
+      name
+      airDate
+      code
+    }
+  }
+}
+
+mutation deleteCharacter($id: Int!) {
+  characterMutation {
+    deleteCharacter(id: $id)
+  }
+}
+mutation updateCharacter(
+  $characterUpdater: CharacterUpdater!
+  $relations: CharacterRelations
+) {
+  characterMutation {
+    updateCharacter(updater: $characterUpdater, relations: $relations) {
+      id
+      name
+      status
+      species
+      gender
+      type
+    }
+  }
+}
+
+mutation createCharacter(
+  $creator: CharacterCreator!
+  $relations: CharacterRelations!
+) {
+  characterMutation {
+    createCharacter(creator: $creator, relations: $relations) {
+      id
+      name
+      status
+      species
+      gender
+      type
+      originId
+      locationId
+    }
+  }
+}

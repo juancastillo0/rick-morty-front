@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap;
+  margin-bottom: 10px;
+  #edit-delete-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    button:first-of-type {
+      margin-right: 15px;
+    }
+  }
+}
+
+.episodes-row {
+  h4 {
+    font-weight: lighter;
+    margin-bottom: 8px;
+  }
+  mat-list {
+    max-height: 45vh;
+    overflow: auto;
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}

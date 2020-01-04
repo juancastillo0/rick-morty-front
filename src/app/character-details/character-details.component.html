@@ -1,0 +1,46 @@
+<ng-container *ngIf="character$ | async as character">
+  <div class="container">
+    <header>
+      <h2>
+        {{character.name}}
+      </h2>
+      <div id="edit-delete-buttons">
+        <button mat-raised-button (click)="onEdit()">Editar</button>
+        <button mat-raised-button color="warn" (click)="onDelete()">Eliminar</button>
+      </div>
+    </header>
+
+    <app-character-edit [character]="character" [submitFn]="edit" [cancelFn]="onEdit" *ngIf="editing">
+    </app-character-edit>
+
+    <div *ngIf="!editing">
+      <div class="col">
+        <app-character-info [character]="character"></app-character-info>
+        <div class="episodes-row">
+          <h4>Episodios</h4>
+          <mat-list *ngIf="character.episodes !== undefined">
+            <mat-list-item *ngFor="let episode of character.episodes">
+              <div mat-line>{{episode.code}} - {{episode.name}}</div>
+              <div mat-line>{{episode.airDate}}</div>
+            </mat-list-item>
+            <div *ngIf="character.episodes.length === 0">
+              {{character.name}} no tiene episodios
+            </div>
+          </mat-list>
+          <mat-spinner style="margin:20px auto 0;" diameter=30 *ngIf="character.episodes === undefined"></mat-spinner>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="deleting" class="modal">
+      <div class="modal-content">
+        <h3>Eliminar {{character.name}}</h3>
+        <p>¿Está seguro que desea eliminar a {{character.name}}?</p>
+        <footer>
+          <button mat-raised-button (click)="onDelete()">Cancelar</button>
+          <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+</ng-container>

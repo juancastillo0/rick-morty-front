@@ -1,0 +1,51 @@
+<div class="row">
+  <section>
+    <span>Género</span>
+    <div>{{character.gender}}</div>
+  </section>
+  <section>
+    <span>Estado</span>
+    <div>{{character.status}}</div>
+  </section>
+</div>
+<div class="row">
+  <section>
+    <span>Especie</span>
+    <div>{{character.species}}</div>
+  </section>
+  <section>
+    <span>Tipo</span>
+    <div>{{character.type || "-"}}</div>
+  </section>
+</div>
+<mat-divider></mat-divider>
+<div class="row" *ngIf="showLocation || showOrigin">
+  <section *ngIf="showOrigin">
+    <span>Origen</span>
+    <div *ngIf="character.origin">
+      <div [routerLink]="['/locations/', character.origin.id]" class="location-name">{{character.origin.name}} ({{character.origin.type}})
+      </div>
+      <div class="location-content">
+        <span>Dimensión</span>
+        <div>{{character.origin.dimension}}</div>
+      </div>
+    </div>
+    <div *ngIf="!character.origin">
+      -
+    </div>
+  </section>
+  <section *ngIf="showLocation">
+    <span>Lugar</span>
+    <div *ngIf="character.location">
+      <div [routerLink]="['/locations/', character.location.id]" class="location-name">{{character.location.name}}
+        ({{character.location.type}})</div>
+      <div class="location-content">
+        <span>Dimensión</span>
+        <div>{{character.location.dimension}}</div>
+      </div>
+    </div>
+    <div *ngIf="!character.location">
+      -
+    </div>
+  </section>
+</div>
